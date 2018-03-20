@@ -1,19 +1,8 @@
 #include <iostream>
 #include <NTL/ZZ.h>
-#include <math.h>
 
 using namespace std;
 using namespace NTL;
-
-const long PI = 3;
-
-ZZ powerOfTwo(ZZ power) {
-    ZZ acc = ZZ{2};
-    for(int i = 0; i < power - 1; i++) {
-        acc *= 2;
-    }
-    return acc;
-}
 
 long witness(const ZZ& n, const ZZ& x)
 {
@@ -57,16 +46,8 @@ long PrimeTest(const ZZ& n, long t)
    return 1;
 }
 
-ZZ getBigAssPrimeNumber() {
-    ZZ term = powerOfTwo(ZZ{1024}) - powerOfTwo(ZZ{960}) - powerOfTwo(ZZ{64})*(powerOfTwo(ZZ{894})*PI + 129093);
-    while(!PrimeTest(term, 10)) {
-        term ++;
-    }
-    return term;
-}
-
 int main() {
-    ZZ p = getBigAssPrimeNumber();
+    ZZ p = conv<ZZ>("179769313486231590770839156793787453197860296048756011706444423684197180216158519368947833795864925541502180565485980503646440548199239100050792877003355816639229553136239076508735759914822574862575007425302077447712589550957937778424442426617334727629299387668709205606050270810842907692932019128194467627007");
     cout<<NumBits(p)<<endl;
     return 0;
 }
