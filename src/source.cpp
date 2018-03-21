@@ -42,8 +42,9 @@ int main() {
         }
         cout<<"Now working with "<<ss.str()<<endl;
         ZZ R = PowerMod(ZZ{2}, conv<ZZ>(ss.str().c_str()), p);
-        ZZ remaining = compute_factorization(R);
-        cout<<NumBits(remaining)<<endl;
+        FactorizationResult* result = compute_factorization(R);
+        //cout<<NumBits()<<endl;
+        delete result;
     }
     return 0;
 }
