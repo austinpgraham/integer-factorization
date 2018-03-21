@@ -40,10 +40,9 @@ int main() {
         for(int j = 0; j < 4; j++) {
             ss << ids[i][j];
         }
-        cout<<"Now working with "<<ss.str()<<endl;
         ZZ R = PowerMod(ZZ{2}, conv<ZZ>(ss.str().c_str()), p);
         FactorizationResult* result = compute_factorization(R);
-        //cout<<NumBits()<<endl;
+        cout<<*result<<endl;
         delete result;
     }
     return 0;
