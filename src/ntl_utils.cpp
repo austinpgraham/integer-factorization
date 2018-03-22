@@ -43,7 +43,6 @@ FactorizationResult* compute_factorization(ZZ& number)
     FactorizationResult* fs = new FactorizationResult(number);
     ZZ next_prime;
     while(number != 1) {
-        int count = 0;
         next_prime = ps.next();
         if(next_prime == 0)
         {
@@ -52,9 +51,6 @@ FactorizationResult* compute_factorization(ZZ& number)
         }
         while(number % next_prime == 0) {
             number /= next_prime;
-            count ++;
-        }
-        if(count > 0) {
             fs->increment_count(next_prime);
         }
     }
