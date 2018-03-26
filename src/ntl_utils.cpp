@@ -87,6 +87,20 @@ void FactorizationResult::set_remaining(ZZ remaining)
     this->remaining = remaining;
 }
 
+bool FactorizationResult::validate()
+{
+    map<ZZ, int>::iterator it;
+    ZZ mult_value = ZZ{1};
+    for(it = this->results.begin(); it != this->results.end(); it++)
+    {
+        for(int i = 0; i < it->second; i++)
+        {
+            mult_value *= ZZ{it->first};
+        }
+    }
+    return (mult_value*this->remaining) == this->value;
+}
+
 ostream& operator<<(ostream& os, const FactorizationResult& fr)
 {
     os<<"Working with: "<<fr.value<<endl;
@@ -97,26 +111,6 @@ ostream& operator<<(ostream& os, const FactorizationResult& fr)
     os<<"Bits of remaining: "<<NumBits(fr.remaining)<<endl;
     return os;
 }
-
-// FactorizationResult* compute_factorization(ZZ& number) 
-// {
-//     PrimeSeq ps;
-//     FactorizationResult* fs = new FactorizationResult(number);
-//     ZZ next_prime;
-//     while(number != 1) {
-//         next_prime = ps.next();
-//         if(next_prime == 0)
-//         {
-//             fs->set_remaining(number);
-//             return fs;
-//         }
-//         while(number % next_prime == 0) {
-//             number /= next_prime;
-//             fs->increment_count(next_prime);
-//         }
-//     }
-//     return NULL;
-// }
 
 FactorizationResult* compute_factorization(ZZ& number) 
 {

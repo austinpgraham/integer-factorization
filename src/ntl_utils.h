@@ -14,6 +14,7 @@ public:
     ~FactorizationResult();
     void increment_count(NTL::ZZ);
     void set_remaining(NTL::ZZ);
+    bool validate();
     friend std::ostream& operator<< (std::ostream& os, const FactorizationResult&);
     NTL::ZZ remaining;
 };
