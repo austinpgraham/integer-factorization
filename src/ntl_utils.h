@@ -9,14 +9,15 @@ class FactorizationResult
 private:
     std::map<NTL::ZZ, int> results;
     NTL::ZZ value;
-    NTL::ZZ remaining;
 public:
     FactorizationResult(NTL::ZZ);
     ~FactorizationResult();
     void increment_count(NTL::ZZ);
     void set_remaining(NTL::ZZ);
     friend std::ostream& operator<< (std::ostream& os, const FactorizationResult&);
+    NTL::ZZ remaining;
 };
 
 FactorizationResult* compute_factorization(NTL::ZZ& number);
+long PrimeTest(const NTL::ZZ&, long);
 #endif
