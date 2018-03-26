@@ -11,10 +11,9 @@ private:
     NTL::ZZ value;
 public:
     FactorizationResult(NTL::ZZ);
-    ~FactorizationResult();
     void increment_count(NTL::ZZ);
     void set_remaining(NTL::ZZ);
-    bool validate();
+    bool validate(NTL::ZZ&);
     friend std::ostream& operator<< (std::ostream& os, const FactorizationResult&);
     NTL::ZZ remaining;
 };
