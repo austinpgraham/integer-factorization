@@ -120,7 +120,7 @@ FactorizationResult* compute_factorization(ZZ& number)
             for(int i = 0; i < 200; i++)
             {
                 long bitcount = 0;
-                while(bitcount <= 0)
+                while(bitcount <= 1)
                 {
                     bitcount = RandomBnd(count);
                 }
