@@ -9,5 +9,5 @@ RUN gunzip ntl-10.5.0.tar.gz
 RUN tar xf ntl-10.5.0.tar
 RUN cd ./ntl-10.5.0/src && ./configure
 RUN cd ./ntl-10.5.0/src && make && make install
-RUN g++ -std=c++11 -O3 -o prod-factor src/source.cpp src/ntl_utils.cpp -L/usr/local/lib/ -lntl -lgmp -lpthread
-CMD ["./prod-factor output1.txt output2.txt"]
+RUN g++ -std=c++11 -O3 -o run-factor src/source.cpp src/ntl_utils.cpp -L/usr/local/lib/ -lntl -lgmp -lpthread
+CMD "./run-factor output1.txt output2.txt"

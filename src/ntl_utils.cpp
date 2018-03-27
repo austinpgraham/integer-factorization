@@ -97,7 +97,7 @@ FactorizationResult* compute_factorization(ZZ& number)
     ZZ max_prime;
     ZZ next_prime;
     bool usePrimeSeq = true;
-    int count = 0;
+    long count = 0;
     while(number != 1)
     {
         if(usePrimeSeq)
@@ -106,26 +106,60 @@ FactorizationResult* compute_factorization(ZZ& number)
             if(next_prime == 0)
             {
                 usePrimeSeq = false;
+                count = NumBits(number);
                 continue;
             }
             while(number % next_prime == 0) {
                 number /= next_prime;
-                fs->increment_count(next_prime);
+                // fs->increment_count(next_prime);
             }
             max_prime = next_prime;
         }
         else
         {
-            if(count == 10000)
+            // if(count == 100000)
+            // {
+            //     cout<<"Hit 100000"<<endl;
+            //     cout<<NumBits(max_prime)<<endl;
+            //     break;
+            // }
+            // NextPrime(max_prime, max_prime + 1);
+            // while(number % max_prime == 0) {
+            //     number /= max_prime;
+            //     // fs->increment_count(max_prime);
+            // }
+            // count++;
+            for(int i = 0; i < 1000; i++)
             {
-                break;
+                long bitcount = 0;
+                while(bitcount == 0)
+                {
+                    bitcount = RandomBnd(count);
+                }
+                ZZ big_prime;
+                GenPrime(big_prime, bitcount);
+                for(int j = 0; j < 1000; j++)
+                {
+                    while(number % big_prime == 0) {
+                        number /= big_prime;
+                        cout<<big_prime<<endl;
+                        count = NumBits(number);
+                    } 
+                    NextPrime(big_prime, big_prime + 1);  
+                }
+                cout<<i+1<<"  "<<count<<endl;
             }
-            NextPrime(max_prime, max_prime + 1);
-            while(number % max_prime == 0) {
-                number /= max_prime;
-                fs->increment_count(max_prime);
-            }
-            count++;
+            // ZZ big_prime;
+            // GenPrime(big_prime, count);
+            // while(number % big_prime == 0) {
+            //     number /= big_prime;
+            // }
+            // count--;
+            // if(count <= 31)
+            // {
+            //     break;
+            // }
+
         }
     }
     fs->set_remaining(number);
