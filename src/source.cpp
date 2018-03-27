@@ -11,7 +11,7 @@ using namespace NTL;
 
 typedef struct thread_args
 {
-    char group[11][4][10];
+    char group[12][4][10];
     const char *filename;
     ZZ &p;
 } FactorThreadArgs;
