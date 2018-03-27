@@ -118,30 +118,11 @@ FactorizationResult* compute_factorization(ZZ& number)
         }
         else
         {
-            for(int i = 0; i < 200; i++)
-            {
-                long bitcount = 0;
-                while(bitcount <= 1)
-                {
-                    bitcount = RandomBnd(count);
-                }
-                ZZ big_prime;
-                GenPrime(big_prime, bitcount);
-                for(int j = 0; j < 1000; j++)
-                {
-                    while(number % big_prime == 0) {
-                        number /= big_prime;
-                        fs->increment_count(big_prime);
-                        count = NumBits(number);
-                    } 
-                    NextPrime(big_prime, big_prime + 1);  
-                    if(big_prime >= number)
-                    {
-                        break;
-                    }
-                }
+            NextPrime(max_prime, max_prime + 1);
+            while(number % max_prime == 0) {
+                number /= max_prime;
+                fs->increment_count(max_prime);
             }
-            break;
         }
     }
     fs->set_remaining(number);
