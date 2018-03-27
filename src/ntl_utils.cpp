@@ -87,6 +87,7 @@ ostream& operator<<(ostream& os, const FactorizationResult& fr)
         os<<it.first<<"^"<<it.second<<endl;
     }
     os<<"Bits of remaining: "<<NumBits(fr.remaining)<<endl;
+    os<<"Is prime? "<<PrimeTest(fr.remaining, 10)<<endl;
     return os;
 }
 
