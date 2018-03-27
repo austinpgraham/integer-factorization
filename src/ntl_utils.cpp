@@ -129,7 +129,7 @@ FactorizationResult* compute_factorization(ZZ& number)
             //     // fs->increment_count(max_prime);
             // }
             // count++;
-            for(int i = 0; i < 1000; i++)
+            for(int i = 0; i < 200; i++)
             {
                 long bitcount = 0;
                 while(bitcount == 0)
@@ -138,6 +138,7 @@ FactorizationResult* compute_factorization(ZZ& number)
                 }
                 ZZ big_prime;
                 GenPrime(big_prime, bitcount);
+                cout<<big_prime<<endl;
                 for(int j = 0; j < 1000; j++)
                 {
                     while(number % big_prime == 0) {
@@ -146,6 +147,10 @@ FactorizationResult* compute_factorization(ZZ& number)
                         count = NumBits(number);
                     } 
                     NextPrime(big_prime, big_prime + 1);  
+                    if(big_prime >= number)
+                    {
+                        break;
+                    }
                 }
                 cout<<i+1<<"  "<<count<<endl;
             }
