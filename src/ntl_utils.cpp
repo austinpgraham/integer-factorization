@@ -111,39 +111,26 @@ FactorizationResult* compute_factorization(ZZ& number)
             }
             while(number % next_prime == 0) {
                 number /= next_prime;
-                // fs->increment_count(next_prime);
+                fs->increment_count(next_prime);
             }
             max_prime = next_prime;
         }
         else
         {
-            // if(count == 100000)
-            // {
-            //     cout<<"Hit 100000"<<endl;
-            //     cout<<NumBits(max_prime)<<endl;
-            //     break;
-            // }
-            // NextPrime(max_prime, max_prime + 1);
-            // while(number % max_prime == 0) {
-            //     number /= max_prime;
-            //     // fs->increment_count(max_prime);
-            // }
-            // count++;
             for(int i = 0; i < 200; i++)
             {
                 long bitcount = 0;
-                while(bitcount == 0)
+                while(bitcount <= 0)
                 {
                     bitcount = RandomBnd(count);
                 }
                 ZZ big_prime;
                 GenPrime(big_prime, bitcount);
-                cout<<big_prime<<endl;
                 for(int j = 0; j < 1000; j++)
                 {
                     while(number % big_prime == 0) {
                         number /= big_prime;
-                        cout<<big_prime<<endl;
+                        fs->increment_count(big_prime);
                         count = NumBits(number);
                     } 
                     NextPrime(big_prime, big_prime + 1);  
@@ -152,19 +139,8 @@ FactorizationResult* compute_factorization(ZZ& number)
                         break;
                     }
                 }
-                cout<<i+1<<"  "<<count<<endl;
             }
-            // ZZ big_prime;
-            // GenPrime(big_prime, count);
-            // while(number % big_prime == 0) {
-            //     number /= big_prime;
-            // }
-            // count--;
-            // if(count <= 31)
-            // {
-            //     break;
-            // }
-
+            break;
         }
     }
     fs->set_remaining(number);
