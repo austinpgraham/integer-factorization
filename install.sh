@@ -1,9 +1,4 @@
-# integer-factorization
-Implementation of CS 5823 Midterm project
-
-Factor go very fast primes
-
-# AWS Getting Starter
+#!/bin/sh
 sudo apt-get update
 sudo apt-get install make g++
 sudo apt-get install libgmp3-dev
